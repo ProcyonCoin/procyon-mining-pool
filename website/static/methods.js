@@ -122,11 +122,17 @@ function createLineChart(ctx, datasets, xLabel, yLabel, ticks) {
       },
       scales: {
         xAxes: [{
+          gridLines : {
+            display : false,
+          },
           type: 'time'
         }],
         yAxes: [{
           ticks: ticks,
           display: true,
+          gridLines : {
+            display : false,
+          },
           scaleLabel: {
             display: true,
             labelString: yLabel

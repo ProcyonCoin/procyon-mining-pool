@@ -1,31 +1,30 @@
-# nomp-kawpow-pool
-Highly Efficient mining pool for Raven Coin Kawpow algo!
+# NOMP KawPoW Algorithm Pool -Neoxa
+Highly Efficient mining pool for Coins based on KawPoW algo!
+
+This is opensource mining pool for Neoxa, Please visit [Neoxa](https://www.neoxa.net) for more information
+
 
 -------
 ### Screenshots
 #### Home<br />
-![Home](https://raw.githubusercontent.com/EasyX-Community/EasyNOMP/master/docs/screenshots/home.png)
+![Home](https://raw.githubusercontent.com/Satoex/kawpow-pool/master/docs/frontend/home.png)
 
 #### Pool Stats<br />
-![Pool Stats](https://raw.githubusercontent.com/EasyX-Community/EasyNOMP/master/docs/screenshots/poolstats.png)<br /><br />
+![Pool Stats](https://raw.githubusercontent.com/Satoex/kawpow-pool/master/docs/frontend/poolstats.png)<br /><br />
 
 #### Miner Stats<br />
-![Miner Stats](https://raw.githubusercontent.com/EasyX-Community/EasyNOMP/master/docs/screenshots/minerstats.png)<br /><br />
+![Miner Stats](https://raw.githubusercontent.com/Satoex/kawpow-pool/master/docs/frontend/minerstats.png)<br /><br />
 
-#### Block Explorer<br />
-![Block Explorer](https://raw.githubusercontent.com/EasyX-Community/EasyNOMP/master/docs/screenshots/blockexplorer.png)<br /><br />
+#### Payments<br />
+![Payments](https://raw.githubusercontent.com/Satoex/kawpow-pool/master/docs/frontend/payments.png)<br /><br />
 
 -------
 ### Node Open Mining Portal consists of 3 main modules:
 | Project | Link |
 | ------------- | ------------- |
-| [EasyNOMP](https://github.com/EasyX-Community/EasyNOMP) | https://github.com/EasyX-Community/EasyNOMP |
-| [Stratum Pool](https://github.com/RavenCommunity/kawpow-stratum-pool) | https://github.com/RavenCommunity/kawpow-stratum-pool |
-| [Node Multihashing](https://github.com/EasyX-Community/node-multi-hashing) | https://github.com/EasyX-Community/node-multi-hashing |
-
-### Watch setup guide video on YouTube channel
-
-https://www.youtube.com/watch?v=NOjPFZk4sp0
+| [KawPoWNOMP](https://github.com/NeoxaChain/kawpow-pool) | https://github.com/NeoxaChain/kawpow-pool |
+| [Stratum Pool](https://github.com/tweetyf/kawpow-stratum-pool.git) | https://github.com/tweetyf/kawpow-stratum-pool.git |
+| [Node Multihashing](https://github.com/zone117x/node-multi-hashing.git) | https://github.com/zone117x/node-multi-hashing.git |
 
 -------
 ### Requirements
@@ -33,47 +32,45 @@ https://www.youtube.com/watch?v=NOjPFZk4sp0
 * Ubuntu Server 18.04.* LTS
 * Coin daemon
 * Node Version Manager
-* Node 8.1.4
+* Node 12.13.0
 * Process Manager 2 / pm2
 * Redis Server
 * ntp
 
 -------
 
-### Install Coin Daemon
+### Install Neoxa Daemon
 
-    adduser pool
-    usermod -aG sudo pool
+    sudo adduser pool
+    sudo usermod -aG sudo pool
     su - pool
     sudo apt install wget
-    wget https://github.com/RavenProject/Ravencoin/releases/download/v4.3.1/raven-4.3.1.0-x86_64-linux-gnu.tar.gz
-    tar -xf raven-4.3.1.0-x86_64-linux-gnu.tar.gz
-    rm raven*gz
-    cd raven-4.3.1.0/bin
-    mkdir -p ~/.raven/
-    touch ~/.raven/raven.conf
-    echo "rpcuser=user1" > ~/.raven/raven.conf
-    echo "rpcpassword=pass1" >> ~/.raven/raven.conf
-    echo "prune=550" >> ~/.raven/raven.conf
-    echo "daemon=1" >> ~/.raven/raven.conf
-    ./ravend
-    ./raven-cli getnewaddress
+    wget https://github.com/NeoxaChain/Neoxa/releases/download/v1.0.1/neoxad-linux64.zip   (Ensure LATEST!)
+    unzip neoxad-linux64.zip
+    mkdir -p ~/.neoxa/
+    touch ~/.neoxa/neoxa.conf
+    echo "rpcuser=user1" > ~/.neoxa/neoxa.conf
+    echo "rpcpassword=pass1" >> ~/.neoxa/neoxa.conf
+    echo "prune=550" >> ~/.neoxa/neoxa.conf
+    echo "daemon=1" >> ~/.neoxa/neoxa.conf
+    neoxad
+    neoxa-cli getnewaddress
 
-Example output: RKopFydExeQXSZZiSTtg66sRAWvMzFReUj - it is the address of your pool, you need to remember it and specify it in the configuration file pool_configs/ravencoin.json.
+Example output: HNRMPAYzdBHGWgK7CjSFByuUcufCHSST7r - it is the address of your pool, you need to remember it and specify it in the configuration file pool_configs/neoxacoin.json.
     
-    ./raven-cli getaddressesbyaccount ""
+    neoxa-cli getaddressesbyaccount ""
     
 Information about pool wallet address.
     
-    ./raven-cli getwalletinfo
+    neoxa-cli getwalletinfo
     
 Get more information.
 
-    ./raven-cli getblockcount
+    neoxa-cli getblockcount
     
 Information about synchronization of blocks in the main chain.
 
-    ./raven-cli help
+    neoxa-cli help
 Other helpfull commands.
 
 -------
@@ -83,8 +80,8 @@ Other helpfull commands.
     sudo apt install git -y
     cd ~
     git config --global http.https://gopkg.in.followRedirects true
-    git clone https://github.com/DirtyHarryDev/nomp-kawpow-pool.git
-    cd nomp-kawpow-pool/
+    git clone https://github.com/NeoxaChain/kawpow-pool
+    cd kawpow-pool/
     ./install.sh
 
 -------
@@ -92,13 +89,13 @@ Other helpfull commands.
 
 Change "stratumHost": "192.168.0.200", to your IP or DNS in file config.json:
 
-    cd ~/nomp-kawpow-pool
+    cd ~/kawpow-pool
     nano config.json
 
 ```javascript
 {
     
-    "poolname": "Raven Coin Pool",
+    "poolname": "Neoxa Pool",
     
     "devmode": false,
     "devmodePayMinimim": 0.25,
@@ -108,25 +105,26 @@ Change "stratumHost": "192.168.0.200", to your IP or DNS in file config.json:
     "anonymizeips": true,
     "ipv4bits": 16,
     "ipv6bits": 16,
+    "poolwarningmsg": "",
     
-     "defaultCoin": "ravencoin",
+    "defaultCoin": "neoxacoin",
     
-    "poollogo": "https://zelcash.github.io/zeltrez.io/images/logos/Ravencoin.svg",
+    "poollogo": "/static/icons/neoxa.png",
     
-    "discordtwitterfacebook": "Join our #mining channel on Discord: <a href='https://discord.gg/vzcbVNW' target='_blank'>https://discord.gg/vzcbVNW</a>",
+    "discordtwitterfacebook": "",
     
-    "pagetitle": "Raven Coin Pool - 1% Fees Promo - Run by professionals",
-    "pageauthor": "My Name Is...",
-    "pagedesc": "A reliable, low fee, easy to use mining pool for cryptocurrency! No matter your experience with mining cryptocurrency, we make it easy! Get started mining today!",
-    "pagekeywds": "GPU,CPU,Hash,Hashrate,Cryptocurrency,Crypto,Mining,Pool,Bitcoin,Raven,Ravencoin,Wavi,Wavicoin,Dixicoin,Dixi,QBic,QBicCoin,Easy,Simple,How,To",
+    "pagetitle": "Neoxa Coin Pool - 0% Fees Promo",
+    "pageauthor": "Neoxa project",
+    "pagedesc": "A reliable, 0% fee, easy to use mining pool for cryptocurrency! No matter your experience with mining cryptocurrency, we make it easy! Get started mining today!",
+    "pagekeywds": "GPU,CPU,Hash,Hashrate,Cryptocurrency,Crypto,Mining,Pool,Bitcoin,Neoxa,Wavi,Wavicoin,Dixicoin,Dixi,QBic,QBicCoin,Easy,Simple,How,To",
 
-    "btcdonations": "1NRXddRwZSXVQ8NBdgiwv5DsJn2bmHenu6",
-    "ltcdonations": "LcghtmAVSi94FHrn4xbbSd4nFChWy6QUng",
-    "ethdonations": "0x85c5e7db222705da939174cf435d8836423a03e8",
+    "btcdonations": "",
+    "ltcdonations": "",
+    "ethdonations": "",
 
     "logger" : {
         "level" : "debug",
-        "file" : "~/nomp-kawpow-pool/logs/nomp_debug.log"
+        "file" : "./logs/nomp_debug.log"
     },
 
     "cliHost": "127.0.0.1",
@@ -162,14 +160,14 @@ Change "stratumHost": "192.168.0.200", to your IP or DNS in file config.json:
         "sslenabled": false,
         "sslforced": false,
         "host": "0.0.0.0",
-        "port": 80,
+        "port": 8080,
         "sslport": 443,
         "sslkey": "~/nomp-kawpow-pool/certs/privkey.pem",
         "sslcert": "~/nomp-kawpow-pool/certs/fullchain.pem",
-        "stratumHost": "192.168.0.200",
+        "stratumHost": "192.168.100.105",
         "stats": {
-            "updateInterval": 5,
-            "historicalRetention": 43200,
+            "updateInterval": 30,
+            "historicalRetention": 172800,
             "hashrateWindow": 600
         },
         "adminCenter": {
@@ -245,82 +243,140 @@ Change "stratumHost": "192.168.0.200", to your IP or DNS in file config.json:
     }
 
 }
-
 ```
+Create a pool config for you coins:
+    
+    mv pool_configs/neoxa_example.json pool_configs/neoxa.json
 
-Change "address": "RKopFydExeQXSZZiSTtg66sRAWvMzFReUj", to your pool created wallet address in file ravencoin.json:
+Change "address": "GXUJSRkFHc6AJXMRyZTcA1xorKkXpU2RRe", to your pool created wallet address in file neoxa.json:
 
-    cd ~/nomp-kawpow-pool/pool_configs
-    nano ravencoin.json
+    cd pool_configs
+    nano neoxa.json
 
 ```javascript
 {
     "enabled": true,
-    "coin": "ravencoin.json",
+    "coin": "neoxa.json",
 
-    "address": "RKopFydExeQXSZZiSTtg66sRAWvMzFReUj",
+    "address": "GXUJSRkFHc6AJXMRyZTcA1xorKkXpU2RRe",
     
-    "donateaddress": "RL5SUNMHmjXtN1AzCRFQrFEhjnf7QQY7Tz",
+    "donateaddress": "GXUJSRkFHc6AJXMRyZTcA1xorKkXpU2RRe",
 
     "rewardRecipients": {
-        "RL5SUNMHmjXtN1AzCRFQrFEhjnf7QQY7Tz": 0.5,
-        "Ta26x9axaDQWaV2bt2z8Dk3R3dN7gHw9b6": 0
+	    "GXUJSRkFHc6AJXMRyZTcA1xorKkXpU2RRe":0.5
     },
 
     "paymentProcessing": {
         "enabled": true,
         "schema": "PROP",
         "paymentInterval": 300,
-        "minimumPayment": 0.25,
-        "maxBlocksPerPayment": 10,
+        "minimumPayment": 5,
+        "maxBlocksPerPayment": 50000,
         "minConf": 30,
         "coinPrecision": 8,
         "daemon": {
             "host": "127.0.0.1",
-            "port": 17117,
+            "port": 9766,
             "user": "user1",
             "password": "pass1"
         }
     },
 
     "ports": {
-	"10008": {
-            "diff": 2,
+		"10001": {
+            "diff": 0.001,
     	    "varDiff": {
-    	        "minDiff": 1,
-    	        "maxDiff": 16,
+    	        "minDiff": 0.001,
+    	        "maxDiff": 32,
     	        "targetTime": 10,
     	        "retargetTime": 60,
     	        "variancePercent": 30,
     		    "maxJump": 25
     	    }
         },
-        "10032": {
-            "varDiff": {
-                "minDiff": 0.04,
-                "maxDiff": 16,
+		"10002": {
+            "diff": 0.01,
+    	    "varDiff": {
+    	        "minDiff": 0.01,
+    	        "maxDiff": 32,
     	        "targetTime": 10,
     	        "retargetTime": 60,
     	        "variancePercent": 30,
-		        "maxJump": 25
-            }
+    		    "maxJump": 25
+    	    }
         },
-        "10256": {
-		    "varDiff": {
-    			"minDiff": 1000,
-    			"maxDiff": 9000,
+		"10003": {
+            "diff": 0.1,
+    	    "varDiff": {
+    	        "minDiff": 0.1,
+    	        "maxDiff": 32,
     	        "targetTime": 10,
     	        "retargetTime": 60,
     	        "variancePercent": 30,
-    			"maxJump": 50
-    		}
+    		    "maxJump": 25
+    	    }
+        },
+		"10004": {
+            "diff": 0.5,
+    	    "varDiff": {
+    	        "minDiff": 0.5,
+    	        "maxDiff": 32,
+    	        "targetTime": 10,
+    	        "retargetTime": 60,
+    	        "variancePercent": 30,
+    		    "maxJump": 25
+    	    }
+        },
+		"10005": {
+            "diff": 1,
+    	    "varDiff": {
+    	        "minDiff": 1,
+    	        "maxDiff": 32,
+    	        "targetTime": 10,
+    	        "retargetTime": 60,
+    	        "variancePercent": 30,
+    		    "maxJump": 25
+    	    }
+        },
+		"10006": {
+            "diff": 2,
+    	    "varDiff": {
+    	        "minDiff": 2,
+    	        "maxDiff": 32,
+    	        "targetTime": 10,
+    	        "retargetTime": 60,
+    	        "variancePercent": 30,
+    		    "maxJump": 25
+    	    }
+        },
+		"10007": {
+            "diff": 4,
+    	    "varDiff": {
+    	        "minDiff": 4,
+    	        "maxDiff": 64,
+    	        "targetTime": 10,
+    	        "retargetTime": 60,
+    	        "variancePercent": 30,
+    		    "maxJump": 25
+    	    }
+        },
+		"10008": {
+            "diff": 0.5,
+    	    "varDiff": {
+    	        "minDiff": 0.5,
+    	        "maxDiff": 32,
+    	        "targetTime": 10,
+    	        "retargetTime": 60,
+    	        "variancePercent": 30,
+    		    "maxJump": 25
+    	    }
         }
     },
 
     "daemons": [
         {
             "host": "127.0.0.1",
-            "port": 8766,
+            "port": 9766,
             "user": "user1",
             "password": "pass1"
         }
@@ -359,16 +415,4 @@ Change "address": "RKopFydExeQXSZZiSTtg66sRAWvMzFReUj", to your pool created wal
 
 ### Run Pool
     
-    cd ~/nomp-kawpow-pool
-    ./pool-start.sh
-
-### Donates for developers easyNOMP
-
-
-BTC: 18TmiWzbMLyf7MvQMcNWh3hUBVrxBgzrWi
-
-LTC: LX1fUwLVcAaRXvP67ZcqUvjjteaKx1nAvL
-
-ETH/ERC20: 0x52fD0B6847E1D3cEc5600359f24d671FdE2Bc65B
-    
--------
+    node ./init.js

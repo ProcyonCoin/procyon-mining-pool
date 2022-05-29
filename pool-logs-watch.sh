@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo ""
-echo "RavenNOMP Watching Logs..."
+echo "KawPoW Pool Start Watching Logs..."
 echo ""
 
 source ~/.bashrc
@@ -17,16 +17,14 @@ echo "Current working dir : $PWD"
 echo "Script location path (dir) : $BASEDIR"
 echo ""
 
-
 if [ "${1}" != "" ]; then
   watch -n1 -- "sudo tail -n1000 ~/.pm2/logs/pool-out.log | grep -i -a \"${1}\"" ;
 else
-  ~/.nvm/versions/node/v8.1.4/bin/pm2 logs pool ;
+  ~/.nvm/versions/node/v12.13.0/bin/pm2 logs pool ;
 fi
 
-
 echo ""
-echo "Done!"
+echo "Starting Watch Logs!"
 echo ""
 
 exit 0

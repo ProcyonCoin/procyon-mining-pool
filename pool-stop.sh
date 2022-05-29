@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo ""
-echo "RavenNOMP Stop..."
+echo "KawPoW Pool Stoping..."
 echo ""
 
 source ~/.bashrc
@@ -17,10 +17,10 @@ echo "Current working dir : $PWD"
 echo "Script location path (dir) : $BASEDIR"
 echo ""
 
-~/.nvm/versions/node/v8.1.4/bin/pm2 stop pool
+pm2 stop pool
 
 echo ""
-echo "Done!"
+echo "KawPow Pool Stopped!"
 echo ""
 
 exit 0

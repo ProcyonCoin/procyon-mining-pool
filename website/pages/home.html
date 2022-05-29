@@ -85,8 +85,8 @@
     }
 
     .header-blue {
-      background: linear-gradient(135deg, #43d091, #00BCD4);
-      background-color: #184e8e;
+      background-color: #738bdc;
+      background-image: linear-gradient(315deg, #738bdc 0%, #48c3eb 74%);
       padding-bottom: 40px;
     }
 
@@ -104,7 +104,7 @@
 
     .features-boxed {
       color: #313437;
-      background-color: #eef4f7;
+
     }
 
     .features-boxed p {
@@ -150,7 +150,7 @@
 
     .features-boxed .item .icon {
       font-size: 60px;
-      background: -webkit-linear-gradient(#43d091, #00BCD4);
+      background: -webkit-linear-gradient(315deg, #738bdc 0%, #48c3eb 74%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-top: 20px;
@@ -183,12 +183,12 @@
 <section class="title">
   <div>
       <div class="header-blue">
-          <div class="container hero" style="margin-left: 5px;">
-            <div class="row">
-              <div class="col-12 col-lg-12 col-xl-12 offset-xl-1">
-                <h1 class="display-4" style="margin:0 15px 5px 0;">Welcome To EasyX Community Pool!</h1>
-                <p>A multi-coin mining pool made by miners, for miners. No matter if you are new to mining, or experienced. Our goal is to make a fast reliable cryptocurrency mining pool, that is easy for everyone to use!</p>
-                <div class="row">
+          <div class="container hero">
+            <div class="row text-center">
+              <div class="col-12 col-lg-12 col-xl-12">
+                <h1 class="display-4" style="margin:0 15px 5px 0;">Welcome To Raccoon paradise !</h1>
+                <p>The raccoon miner will find something here to occupy his magnificent little GPUs and earn a few peanuts!<br>Our goal is to make a fast reliable kawpow algorithm mining pool, that is easy for everyone to use especially for Raccoon family!</p>
+                <div class="row justify-content-center">
                   <div class="col-lg-4 col-md-8">
                     <a class="btn btn-light btn-lg action-button header-button" href="/getting_started">Get Started Now!</a>
                   </div>
@@ -201,33 +201,34 @@
       </div>
   </div>
 </section>
+
 <section class="features">
   <div class="features-boxed">
       <div class="container-fluid">
           <div class="intro">
-              <h4 class="text-center display-4" style="font-size:40px;padding:40px 0 0 0;margin:0;">What Our Pools Feature</h4>
+              <h4 class="text-center display-4" style="font-size:40px;padding:40px 0 0 0;margin:0;">Our Pool Features</h4>
           </div>
           <div class="row justify-content-center features pb-1">
               <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 item">
-                  <div class="box"><i class="fa fa-tachometer icon"></i>
-                      <h3 class="name">They&#39;re Fast</h3>
-                      <p class="description">Speed is key when it comes to mining. So we chose hardware that can provide just that! Giving our users the best connection possible! Our servers are hosted on a 10 Gig level 3 connection over a Juniper backbone to multiple 40 Gig uplinks. Much blocks, such speed!</p>
+                  <div class="box shadow"><i class="fas fa-tachometer-alt icon"></i>
+                      <h3 class="name">We Are Fast</h3>
+                      <p class="description">Speed is key when it comes to mining. So we chose hardware that can provide just that! Giving our users the best connection possible!</p>
                   </div>
               </div>
               <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 item">
-                  <div class="box"><i class="fa fa-shield icon"></i>
-                      <h3 class="name">They&#39;re Protected</h3>
-                      <p class="description">Don&#39;t like downtime? Neither do we! So we take measures to protect our site from any malicious attacks that could disrupt mining! Our servers have IronProtect Standard - L3/L4 DDoS protection.</p>
+                  <div class="box shadow"><i class="fas fa-shield-alt icon"></i>
+                      <h3 class="name">We Are Protected</h3>
+                      <p class="description">Don&#39;t like downtime? Neither do we! So we take measures to protect our site from any malicious attacks that could disrupt mining!</p>
                   </div>
               </div>
               <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 item">
-                  <div class="box"><i class="fa fa-balance-scale icon"></i>
-                      <h3 class="name">They Have Low Fees</h3>
-                      <p class="description">We&#39;re not here to make profit. So we keep our fees low! Why have any at all you may ask? We gotta pay bills for the website somehow.</p>
+                  <div class="box shadow"><i class="fas fa-percent icon"></i>
+                      <h3 class="name">We Have Low Fees</h3>
+                      <p class="description">We&#39;re not here to make profit. So we keep our fees low! Why have any at all you may ask? We gotta pay bills for the pool hosting somehow.</p>
                   </div>
               </div>
               <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 item">
-                  <div class="box"><i class="fa fa-check icon"></i>
+                  <div class="box shadow"><i class="fas fa-thumbs-up icon"></i>
                       <h3 class="name">It&#39;s All Easy To Use</h3>
                       <p class="description">No matter your experience, you can mine using our pool! We make make mining easy! Head over to <a href="getting_started">Getting Started</a> to learn more!</p>
                   </div>
@@ -244,8 +245,18 @@
           </div>
           <div class="row justify-content-center features">
               <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 item">
-                  <div class="box"><i class="fa fa-users icon"></i>
+                  <div class="box shadow"><i class="fa fa-users icon"></i>
                       <h3 class="name">Total Miners</h3>
+                      {{ var count = 0; }}
+                      {{ for(var pool in it.stats.pools) { }}
+                        {{ count += it.stats.pools[pool].minerCount; }}
+                      {{ } }}
+                      <p class="display-4 text-dark mt-0" style="font-size:40px;">{{=count}}</p>
+                  </div>
+              </div>
+              <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 item">
+                  <div class="box shadow"><i class="fas fa-server icon"></i>
+                      <h3 class="name">Total Workers</h3>
                       {{ var count = 0; }}
                       {{ for(var pool in it.stats.pools) { }}
                         {{ count += it.stats.pools[pool].workerCount; }}
@@ -254,7 +265,7 @@
                   </div>
               </div>
               <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 item">
-                  <div class="box"><i class="fa fa-tachometer icon"></i>
+                  <div class="box shadow"><i class="fas fa-chart-line icon"></i>
                       <h3 class="name">Total Hashrate</h3>
                       {{ var hashrate = 0; }}
                       {{ for(var pool in it.stats.pools) { }}
@@ -269,14 +280,9 @@
                       <p class="display-4 text-dark mt-0" style="font-size:40px;">{{=Math.round(hashrate) + byteUnits[i]}}</p>
                   </div>
               </div>
+
               <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 item">
-                  <div class="box"><i class="fa fa-superscript icon"></i>
-                      <h3 class="name">Algorithms Supported</h3>
-                      <p class="display-4 text-dark mt-0" style="font-size:40px;">{{=Object.keys(it.stats.algos).length}}</p>
-                  </div>
-              </div>
-              <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 item">
-                  <div class="box"><i class="fa fa-database icon"></i>
+                  <div class="box shadow"><i class="fa fa-database icon"></i>
                       <h3 class="name">Pools Hosted</h3>
                       <p class="display-4 text-dark mt-0" style="font-size:40px;">{{=Object.keys(it.stats.pools).length}}</p>
                   </div>
@@ -291,11 +297,13 @@
         statsSource.addEventListener('message', function (e) {
             var stats = JSON.parse(e.data);
             for (algo in stats.algos) {
-                $('#statsMiners' + algo).text(stats.algos[algo].workers);
+                $('#statsMiners' + algo).text(stats.algos[algo].miners);
+                $('#statsWorkers' + algo).text(stats.algos[algo].workers);
                 $('#statsHashrate' + algo).text(stats.algos[algo].hashrateString);
             }
             for (var pool in stats.pools) {
-                $('#statsMiners' + pool).text(stats.pools[pool].workerCount);
+                $('#statsMiners' + pool).text(stats.pools[pool].minerCount);
+                $('#statsWorkers' + pool).text(stats.pools[pool].workerCount);
                 $('#statsHashrate' + pool).text(stats.pools[pool].hashrateString);
             }
         });
