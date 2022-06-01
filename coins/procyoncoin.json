@@ -11,6 +11,6 @@
     "explorerGetBlock": "https://explorer.procyoncoin.org/block/",
     "explorerGetTX": "https://explorer.procyoncoin.org/tx/",
 
-    "blockTime": 90,
+    "blockTime": 60,
     "blockChange": 1
 }
