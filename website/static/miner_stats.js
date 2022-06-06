@@ -262,8 +262,10 @@ $.getJSON('/api/worker_stats?' + _miner, function(data) {
 	});
 });
 
+/*
 statsSource.addEventListener('message', function(e) {
 	var stats = JSON.parse(e.data);
 	$.getJSON('/api/worker_stats?' + _miner, function(data) {
 	});
 });
+*/

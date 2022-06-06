@@ -169,7 +169,7 @@ $.getJSON('/api/pool_stats', function(data) {
 });
 
 
-
+/*
 statsSource.addEventListener('message', function(e) {
   var stats = JSON.parse(e.data);
   statData.push(stats);
@@ -215,3 +215,4 @@ statsSource.addEventListener('message', function(e) {
   }
 
 });
+*/

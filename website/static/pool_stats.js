@@ -98,6 +98,7 @@ $.getJSON('/api/pool_stats', function(data) {
 		displayCharts();
 	});
 });
+/*
 statsSource.addEventListener('message', function(e) {
 	var stats = JSON.parse(e.data);
 	updatePoolData(stats, poolName, function(pool) {
@@ -125,3 +126,4 @@ statsSource.addEventListener('message', function(e) {
 		addChartData(poolBlockChart, poolBlockChart.data.datasets[0], {t: time, y: poolName in stats.pools ? stats.pools[poolName].blocks.pending : 0}, true);
 	});
 }, false);
+*/
