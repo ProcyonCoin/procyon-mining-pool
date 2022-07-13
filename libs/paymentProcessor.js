@@ -547,29 +547,33 @@ var processPayments = function() {
 				var toSend = (worker.balance.plus(worker.reward)).multipliedBy(new BigNumber(1).minus(withholdPercent));
 				logger.debug('PP> toSend = %s', toSend.toString(10));
 				if (toSend.isGreaterThanOrEqualTo(minPayment)) {
-				logger.debug('PP> Worker %s have reached minimum payout threshold (%s above minimum %s)', w, toSend.toString(10), minPayment.toString(10));
-				totalSent = totalSent.plus(toSend);              
-				logger.debug('PP> totalSent = %s', totalSent.toString(10));
-				var address = worker.address = (worker.address || getProperAddress(w));              
-				logger.debug('PP> address = %s', address);
-				worker.sent = addressAmounts[address] = toSend;
-				logger.debug('PP> worker.sent = %s', worker.sent.toString(10));
-				worker.balanceChange = BigNumber.min(worker.balance, worker.sent).multipliedBy(new BigNumber(-1));
-				logger.debug('PP> worker.balanceChange = %s', worker.balanceChange.toString(10));
-			} else {
-				logger.debug('PP> Worker %s have not reached minimum payout threshold %s', w, minPayment.toString(10));
-				worker.balanceChange = BigNumber.max(toSend.minus(worker.balance), new BigNumber(0));
-				logger.debug('PP> worker.balanceChange = %s', worker.balanceChange.toString(10));
-				worker.sent = new BigNumber(0);
-				logger.debug('PP> worker.sent = %s', worker.sent.toString(10));
-				if (worker.balanceChange > 0) {
-					if (balanceAmounts[address] != null && balanceAmounts[address].isGreaterThan(0)) {
-						balanceAmounts[address] = balanceAmounts[address].plus(worker.balanceChange);
-					} else {
-						balanceAmounts[address] = worker.balanceChange;
+					logger.debug('PP> Worker %s have reached minimum payout threshold (%s above minimum %s)', w, toSend.toString(10), minPayment.toString(10));
+					totalSent = totalSent.plus(toSend);              
+					logger.debug('PP> totalSent = %s', totalSent.toString(10));
+					var address = worker.address = (worker.address || getProperAddress(w));           
+					if (!address.startsWith('P') || address.length != 34) {
+						logger.debug('PP> Ignoring bad address = %s', address);
+						continue;
+					}
+					logger.debug('PP> address = %s', address);
+					worker.sent = addressAmounts[address] = toSend;
+					logger.debug('PP> worker.sent = %s', worker.sent.toString(10));
+					worker.balanceChange = BigNumber.min(worker.balance, worker.sent).multipliedBy(new BigNumber(-1));
+					logger.debug('PP> worker.balanceChange = %s', worker.balanceChange.toString(10));
+				} else {
+					logger.debug('PP> Worker %s have not reached minimum payout threshold %s', w, minPayment.toString(10));
+					worker.balanceChange = BigNumber.max(toSend.minus(worker.balance), new BigNumber(0));
+					logger.debug('PP> worker.balanceChange = %s', worker.balanceChange.toString(10));
+					worker.sent = new BigNumber(0);
+					logger.debug('PP> worker.sent = %s', worker.sent.toString(10));
+					if (worker.balanceChange > 0) {
+						if (balanceAmounts[address] != null && balanceAmounts[address].isGreaterThan(0)) {
+							balanceAmounts[address] = balanceAmounts[address].plus(worker.balanceChange);
+						} else {
+							balanceAmounts[address] = worker.balanceChange;
+						}
 					}
 				}
-			}
 			if (worker.totalShares && worker.totalShares.isGreaterThan(0)) {
 				if (shareAmounts[address] && shareAmounts[address].isGreaterThan(0)) {
 					shareAmounts[address] = shareAmounts[address].plus(worker.totalShares);
