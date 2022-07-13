@@ -22,7 +22,6 @@ This is opensource mining pool for Neoxa, Please visit [Neoxa](https://www.neoxa
 ### Node Open Mining Portal consists of 3 main modules:
 | Project | Link |
 | ------------- | ------------- |
-| [KawPoWNOMP](https://github.com/NeoxaChain/kawpow-pool) | https://github.com/NeoxaChain/kawpow-pool |
 | [Stratum Pool](https://github.com/tweetyf/kawpow-stratum-pool.git) | https://github.com/tweetyf/kawpow-stratum-pool.git |
 | [Node Multihashing](https://github.com/zone117x/node-multi-hashing.git) | https://github.com/zone117x/node-multi-hashing.git |
 
@@ -39,49 +38,13 @@ This is opensource mining pool for Neoxa, Please visit [Neoxa](https://www.neoxa
 
 -------
 
-### Install Neoxa Daemon
-
-    sudo adduser pool
-    sudo usermod -aG sudo pool
-    su - pool
-    sudo apt install wget
-    wget https://github.com/NeoxaChain/Neoxa/releases/download/v1.0.1/neoxad-linux64.zip   (Ensure LATEST!)
-    unzip neoxad-linux64.zip
-    mkdir -p ~/.neoxa/
-    touch ~/.neoxa/neoxa.conf
-    echo "rpcuser=user1" > ~/.neoxa/neoxa.conf
-    echo "rpcpassword=pass1" >> ~/.neoxa/neoxa.conf
-    echo "prune=550" >> ~/.neoxa/neoxa.conf
-    echo "daemon=1" >> ~/.neoxa/neoxa.conf
-    neoxad
-    neoxa-cli getnewaddress
-
-Example output: HNRMPAYzdBHGWgK7CjSFByuUcufCHSST7r - it is the address of your pool, you need to remember it and specify it in the configuration file pool_configs/neoxacoin.json.
-    
-    neoxa-cli getaddressesbyaccount ""
-    
-Information about pool wallet address.
-    
-    neoxa-cli getwalletinfo
-    
-Get more information.
-
-    neoxa-cli getblockcount
-    
-Information about synchronization of blocks in the main chain.
-
-    neoxa-cli help
-Other helpfull commands.
-
--------
-
 ### Install Pool
 
     sudo apt install git -y
     cd ~
     git config --global http.https://gopkg.in.followRedirects true
-    git clone https://github.com/NeoxaChain/kawpow-pool
-    cd kawpow-pool/
+    git clone https://github.com/ProcyonCoin/procyon-mining-pool
+    cd procyon-mining-pool/
     ./install.sh
 
 -------
@@ -95,7 +58,7 @@ Change "stratumHost": "192.168.0.200", to your IP or DNS in file config.json:
 ```javascript
 {
     
-    "poolname": "Neoxa Pool",
+    "poolname": "Procyon Pool",
     
     "devmode": false,
     "devmodePayMinimim": 0.25,
@@ -113,10 +76,10 @@ Change "stratumHost": "192.168.0.200", to your IP or DNS in file config.json:
     
     "discordtwitterfacebook": "",
     
-    "pagetitle": "Neoxa Coin Pool - 0% Fees Promo",
-    "pageauthor": "Neoxa project",
+    "pagetitle": "Procyon Coin Pool - 1% Fees",
+    "pageauthor": "ProcyonCoin project",
     "pagedesc": "A reliable, 0% fee, easy to use mining pool for cryptocurrency! No matter your experience with mining cryptocurrency, we make it easy! Get started mining today!",
-    "pagekeywds": "GPU,CPU,Hash,Hashrate,Cryptocurrency,Crypto,Mining,Pool,Bitcoin,Neoxa,Wavi,Wavicoin,Dixicoin,Dixi,QBic,QBicCoin,Easy,Simple,How,To",
+    "pagekeywds": "GPU,CPU,Hash,Hashrate,Cryptocurrency,Crypto,Mining,Pool,Bitcoin,Procyon,Wavi,Wavicoin,Dixicoin,Dixi,QBic,QBicCoin,Easy,Simple,How,To",
 
     "btcdonations": "",
     "ltcdonations": "",
