@@ -1,8 +1,7 @@
-# NOMP KawPoW Algorithm Pool -Neoxa
+# NOMP KawPoW Algorithm Pool -ProcyonCoin
 Highly Efficient mining pool for Coins based on KawPoW algo!
 
-This is opensource mining pool for Neoxa, Please visit [Neoxa](https://www.neoxa.net) for more information
-
+This is opensource mining pool for ProcyonCoin
 
 -------
 ### Screenshots
